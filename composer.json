@@ -1,0 +1,10 @@
+{
+    "name": "facebook/difflib",
+    "license": "MIT",
+    "require": {
+        "hhvm/hsl": "^3.28"
+    },
+    "require-dev": {
+        "hhvm/hhast": "^3.28"
+    }
+}
