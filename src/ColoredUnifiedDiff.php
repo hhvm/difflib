@@ -106,8 +106,8 @@ abstract class ColoredUnifiedDiff<TOut> {
           && \levenshtein($line, $next) - 2 <= (0.5 * (Str\length($line) - 2))
         ) {
           // Drop the prefix
-          $line = Str\slice($line, 2);
-          $next = Str\slice($next, 2);
+          $line = Str\slice($line, 1);
+          $next = Str\slice($next, 1);
           $lines = Vec\drop($lines, 1);
 
           $intraline = StringDiff::characters($line, $next)->getDiff();

@@ -68,7 +68,7 @@ final abstract class CLIColoredUnifiedDiff extends ColoredUnifiedDiff<string> {
   final protected static function colorDeleteLineWithIntralineEdits(
     vec<DiffOp<string>> $ops,
   ): string {
-    $line = self::DELETE_COLOR.'- ';
+    $line = self::DELETE_COLOR.'-';
     foreach ($ops as $op) {
       if ($op is DiffKeepOp<_>) {
         $line .= $op->getContent();
@@ -89,7 +89,7 @@ final abstract class CLIColoredUnifiedDiff extends ColoredUnifiedDiff<string> {
   final protected static function colorInsertLineWithIntralineEdits(
     vec<DiffOp<string>> $ops,
   ): string {
-    $line = self::INSERT_COLOR.'+ ';
+    $line = self::INSERT_COLOR.'+';
     foreach ($ops as $op) {
       if ($op is DiffKeepOp<_>) {
         $line .= $op->getContent();
