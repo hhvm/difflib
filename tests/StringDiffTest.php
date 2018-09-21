@@ -10,7 +10,7 @@
 
 namespace Facebook\DiffLib;
 
-use namespace HH\Lib\{C, Vec};
+use namespace HH\Lib\{C, Str, Vec};
 use function Facebook\FBExpect\expect;
 
 /** Test string-specific functionality */
@@ -62,6 +62,32 @@ final class StringDiffTest extends \Facebook\HackTest\HackTest {
       \file_get_contents($base.'.udiff.expect'),
       'Did not match expected contents '.
       '(from diff -u %s.a %s.b | tail -n +3 > %s.udiff.expect)',
+      $name,
+      $name,
+      $name,
+    );
+  }
+
+  <<DataProvider('provideExamples')>>
+  public function testCLIColoredDiff(string $name): void {
+    $base = __DIR__.'/examples/'.$name;
+    $a = \file_get_contents($base.'.a');
+    $b = \file_get_contents($base.'.b');
+    $diff = CLIColoredUnifiedDiff::create($a, $b);
+
+    \file_put_contents($base.'.clidiff.out', $diff);
+
+    if (!\file_exists($base.'.clidiff.expect')) {
+      self::markTestIncomplete(Str\format(
+        "No expect file present; maybe:\n  cp %s.clidiff.out %s.clidiff.expect",
+        $base,
+        $base,
+      ));
+    }
+
+    expect($diff)->toBeSame(
+      \file_get_contents($base.'.clidiff.expect'),
+      'Did not match expected contents (- %s.clidiff.expect, +%s.clidiff.out)',
       $name,
       $name,
       $name,
