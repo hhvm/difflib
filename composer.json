@@ -1,10 +1,17 @@
 {
     "name": "facebook/difflib",
     "license": "MIT",
+    "extra": {
+      "branch-alias": {
+        "dev-master": "0.2.x-dev"
+      }
+    },
     "require": {
         "hhvm/hsl": "^3.28"
     },
     "require-dev": {
-        "hhvm/hhast": "^3.28"
+        "hhvm/hhast": "^3.28",
+        "hhvm/hacktest": "^1.0",
+        "facebook/fbexpect": "^2.1.2"
     }
 }
