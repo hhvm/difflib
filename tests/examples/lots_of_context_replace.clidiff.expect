@@ -2,8 +2,8 @@
 [0m 8[0m
 [0m 9[0m
 [0m 0[0m
-[31m-foo ba[7mt[0m[31m baz[0m
-[32m+foo ba[7mr[0m[32m baz[0m
+[31m-foo [7mbat[0m[31m baz[0m
+[32m+foo [7mbar[0m[32m baz[0m
 [0m 1[0m
 [0m 2[0m
 [0m 3[0m

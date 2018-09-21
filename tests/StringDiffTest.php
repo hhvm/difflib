@@ -87,10 +87,9 @@ final class StringDiffTest extends \Facebook\HackTest\HackTest {
 
     expect($diff)->toBeSame(
       \file_get_contents($base.'.clidiff.expect'),
-      'Did not match expected contents (- %s.clidiff.expect, +%s.clidiff.out)',
-      $name,
-      $name,
-      $name,
+      'Did not match expected contents (- %s.clidiff.expect, + %s.clidiff.out)',
+      $base,
+      $base,
     );
   }
 }
