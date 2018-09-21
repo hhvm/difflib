@@ -38,6 +38,12 @@ final class StringDiff extends Diff {
     $hunks = vec[];
 
     $remaining = $this->getDiff();
+    $last = C\lastx($remaining);
+    // diff -u ignores trailing newlines
+    if ($last is DiffKeepOp<_> && $last->getContent() === '') {
+      $remaining = Vec\slice($remaining, 0, C\count($remaining) - 1);
+    }
+
     while (!C\is_empty($remaining)) {
       $not_keep = C\find_key($remaining, $row ==> !$row instanceof DiffKeepOp);
       if ($not_keep === null) {

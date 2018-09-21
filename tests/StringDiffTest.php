@@ -30,17 +30,41 @@ final class StringDiffTest extends \Facebook\HackTest\HackTest {
     );
   }
 
-	public function testDiffCharacters(): void {
+  public function testDiffCharacters(): void {
     $diff = StringDiff::characters('abb', 'abc')->getDiff();
-		expect(C\count($diff))->toBeSame(4);
+    expect(C\count($diff))->toBeSame(4);
 
-		expect($diff[0])->toBeInstanceOf(DiffKeepOp::class);
-		expect($diff[1])->toBeInstanceOf(DiffKeepOp::class);
-		expect($diff[2])->toBeInstanceOf(DiffDeleteOp::class);
-		expect($diff[3])->toBeInstanceOf(DiffInsertOp::class);
+    expect($diff[0])->toBeInstanceOf(DiffKeepOp::class);
+    expect($diff[1])->toBeInstanceOf(DiffKeepOp::class);
+    expect($diff[2])->toBeInstanceOf(DiffDeleteOp::class);
+    expect($diff[3])->toBeInstanceOf(DiffInsertOp::class);
 
-		expect(Vec\map($diff, $op ==> $op->getContent()))->toBeSame(
-			vec['a', 'b', 'b', 'c'],
-		);
-	}
+    expect(Vec\map($diff, $op ==> $op->getContent()))->toBeSame(
+      vec['a', 'b', 'b', 'c'],
+    );
+  }
+
+  public function provideExamples(): vec<varray<string>> {
+    return Vec\map(
+      \glob(__DIR__.'/examples/*.a'),
+      $ex ==> varray[\basename($ex, '.a')],
+    );
+  }
+
+  <<DataProvider('provideExamples')>>
+  public function testUnifiedDiff(string $name): void {
+    $base = __DIR__.'/examples/'.$name;
+    $a = \file_get_contents($base.'.a');
+    $b = \file_get_contents($base.'.b');
+    $diff = StringDiff::lines($a, $b)->getUnifiedDiff();
+
+    expect($diff)->toBeSame(
+      \file_get_contents($base.'.udiff.expect'),
+      'Did not match expected contents '.
+      '(from diff -u %s %s | tail -n +3 > %s.udiff.expect)',
+      $base,
+      $base,
+      $base,
+    );
+  }
 }
