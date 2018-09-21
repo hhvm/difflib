@@ -130,12 +130,14 @@ final class StringDiff extends Diff {
     invariant($old_start !== null, 'failed to find an old pos');
     invariant($new_start !== null, 'failed to find a new pos');
 
+    $format = ($start, $lines) ==> ($start === 1 && $lines === 1)
+      ? '1'
+      : Str\format('%d,%d', $start, $lines);
+
     return Str\format(
-      "@@ -%d,%d +%d,%d @@\n",
-      $old_start + 1,
-      $old_lines,
-      $new_start + 1,
-      $new_lines,
+      "@@ -%s +%s @@\n",
+      $format($old_start + 1, $old_lines),
+      $format($new_start + 1, $new_lines),
     ).Str\join($lines, "\n")."\n";
   }
 }
