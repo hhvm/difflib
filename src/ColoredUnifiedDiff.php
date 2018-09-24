@@ -56,13 +56,13 @@ abstract class ColoredUnifiedDiff<TOut> {
    * The default implementation prepends `+ ` then delegates to
    * `colorInsertLine()` without doing any special handling.
    */
-	protected static function colorInsertLineWithIntralineEdits(
-		vec<DiffOp<string>> $ops,
-	): TOut {
-		return static::colorInsertLine(
-			'+ '.(Vec\map($ops, $op ==> $op->getContent()) |> Str\join($$, '')),
-		);
-	}
+  protected static function colorInsertLineWithIntralineEdits(
+    vec<DiffOp<string>> $ops,
+  ): TOut {
+    return static::colorInsertLine(
+      '+ '.(Vec\map($ops, $op ==> $op->getContent()) |> Str\join($$, '')),
+    );
+  }
 
 
   abstract protected static function join(vec<TOut> $lines): TOut;
@@ -103,6 +103,8 @@ abstract class ColoredUnifiedDiff<TOut> {
           && $next !== ''
           && $next[0] === '+'
           // -2 to deal with the prefix
+          /* HH_IGNORE_ERROR[4107] using directly because this is open source */
+          /* HH_IGNORE_ERROR[2049] using directly because this is open source */
           && \levenshtein($line, $next) - 2 <= (0.5 * (Str\length($line) - 2))
         ) {
           // Drop the prefix
