@@ -9,13 +9,27 @@ element (i.e. it's unchanged in both sequences), insert an element, or delete an
 element. For example, in a unified diff, these would be:
 
 ```diff
-  DiffKeepOp
-- DiffDeleteOp
-+ DiffInsertOp
+ DiffKeepOp
+-DiffDeleteOp
++DiffInsertOp
 ```
 
 String diffs are typically represented as a sequence of lines, but can also be
 represented as a sequence of characters, allowing intra-line diffs.
+
+## Diff output formats
+
+difflib can create standard unified diffs:
+
+![@@ -1 +1@@ -Foo Bat Baz +Foo Bar Baz](udiff.png)
+
+difflib can also create colored diffs, with intra-line edits highlighted:
+
+![same diff as above, but with 'Bat' highlighted red, 'Bar' highlighted
+green](clidiff.png)
+
+A concrete implementation is provided for standard CLI terminals, and an
+abstract base class for other implementations, such as HTML or XHP.
 
 ## Examples
 
