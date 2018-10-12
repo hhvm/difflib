@@ -58,7 +58,7 @@ final class StringDiff extends Diff {
       $run_start = null;
       for ($i = $context; $i < $count; ++$i) {
         if ($remaining[$i] instanceof DiffKeepOp) {
-          $run_start = $run_start ?? $i;
+          $run_start ??= $i;
           continue;
         }
 
@@ -99,8 +99,8 @@ final class StringDiff extends Diff {
     foreach ($hunk as $op) {
       if ($op instanceof DiffKeepOp) {
         $lines[] = ' '.$op->getContent();
-        $old_start = $old_start ?? $op->getOldPos();
-        $new_start = $new_start ?? $op->getNewPos();
+        $old_start ??= $op->getOldPos();
+        $new_start ??= $op->getNewPos();
         ++$old_lines;
         ++$new_lines;
         continue;
@@ -108,16 +108,16 @@ final class StringDiff extends Diff {
 
       if ($op instanceof DiffDeleteOp) {
         $lines[] = '-'.$op->getContent();
-        $old_start = $old_start ?? $op->getOldPos();
-        $new_start = $new_start ?? $op->getOldPos();
+        $old_start ??= $op->getOldPos();
+        $new_start ??= $op->getOldPos();
         ++$old_lines;
         continue;
       }
 
       if ($op instanceof DiffInsertOp) {
         $lines[] = '+'.$op->getContent();
-        $old_start = $old_start ?? $op->getNewPos();
-        $new_start = $new_start ?? $op->getNewPos();
+        $old_start ??= $op->getNewPos();
+        $new_start ??= $op->getNewPos();
         ++$new_lines;
         continue;
       }
