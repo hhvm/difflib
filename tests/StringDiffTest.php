@@ -13,7 +13,8 @@ namespace Facebook\DiffLib;
 use namespace HH\Lib\{C, Str, Vec};
 use function Facebook\FBExpect\expect;
 
-// @oss-disable: use type \DataProvider;
+// @oss-disable: use type DataProvider;
+use type Facebook\HackTest\DataProvider; // @oss-enable
 
 /** Test string-specific functionality */
 final class StringDiffTest extends \Facebook\HackTest\HackTest {
