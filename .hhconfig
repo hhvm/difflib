@@ -1,2 +1,4 @@
 assume_php=false
+disable_primitive_refinement=true
+disallow_stringish_magic=true
 user_attributes=
