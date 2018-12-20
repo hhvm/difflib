@@ -61,17 +61,11 @@ final class StringDiffTest extends \Facebook\HackTest\HackTest {
   <<DataProvider('provideExamples')>>
   public function testUnifiedDiff(string $name): void {
     $base = __DIR__.'/examples/'.$name;
-    /* HH_IGNORE_ERROR[4107] using directly because this is open source */
-    /* HH_IGNORE_ERROR[2049] using directly because this is open source */
     $a = \file_get_contents($base.'.a');
-    /* HH_IGNORE_ERROR[4107] using directly because this is open source */
-    /* HH_IGNORE_ERROR[2049] using directly because this is open source */
     $b = \file_get_contents($base.'.b');
     $diff = StringDiff::lines($a, $b)->getUnifiedDiff();
 
     expect($diff)->toBeSame(
-      /* HH_IGNORE_ERROR[4107] using directly because this is open source */
-      /* HH_IGNORE_ERROR[2049] using directly because this is open source */
       \file_get_contents($base.'.udiff.expect'),
       'Did not match expected contents '.
       '(from diff -u %s.a %s.b | tail -n +3 > %s.udiff.expect)',
@@ -84,11 +78,7 @@ final class StringDiffTest extends \Facebook\HackTest\HackTest {
   <<DataProvider('provideExamples')>>
   public function testCLIColoredDiff(string $name): void {
     $base = __DIR__.'/examples/'.$name;
-    /* HH_IGNORE_ERROR[4107] using directly because this is open source */
-    /* HH_IGNORE_ERROR[2049] using directly because this is open source */
     $a = \file_get_contents($base.'.a');
-    /* HH_IGNORE_ERROR[4107] using directly because this is open source */
-    /* HH_IGNORE_ERROR[2049] using directly because this is open source */
     $b = \file_get_contents($base.'.b');
     $diff = CLIColoredUnifiedDiff::create($a, $b);
 
@@ -107,8 +97,6 @@ final class StringDiffTest extends \Facebook\HackTest\HackTest {
     }
 
     expect($diff)->toBeSame(
-      /* HH_IGNORE_ERROR[4107] using directly because this is open source */
-      /* HH_IGNORE_ERROR[2049] using directly because this is open source */
       \file_get_contents($base.'.clidiff.expect'),
       'Did not match expected contents (- %s.clidiff.expect, + %s.clidiff.out)',
       $base,
