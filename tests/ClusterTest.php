@@ -11,7 +11,8 @@
 namespace Facebook\DiffLib;
 
 use namespace HH\Lib\{C, Vec};
-use function Facebook\FBExpect\expect;
+// @oss-disable: use function \expect;
+use function Facebook\FBExpect\expect; // @oss-enable
 
 final class ClusterTest extends \Facebook\HackTest\HackTest {
   public function testReplaceTrailing(): void {
