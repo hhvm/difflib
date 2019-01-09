@@ -11,7 +11,8 @@
 namespace Facebook\DiffLib;
 
 use namespace HH\Lib\{C, Str, Vec};
-use function Facebook\FBExpect\expect;
+// @oss-disable: use function \expect;
+use function Facebook\FBExpect\expect; // @oss-enable
 
 // @oss-disable: use type \DataProvider;
 use type Facebook\HackTest\DataProvider; // @oss-enable
