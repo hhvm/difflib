@@ -7,11 +7,12 @@
       }
     },
     "require": {
-        "hhvm/hsl": "^3.28"
+        "hhvm/hsl": "^4.0"
     },
     "require-dev": {
-        "hhvm/hhast": "^3.28",
+        "hhvm/hhast": "^4.0",
         "hhvm/hacktest": "^1.0",
-        "facebook/fbexpect": "^2.1.2"
+        "facebook/fbexpect": "^2.1.2",
+        "hhvm/hhvm-autoload": "^2.0"
     }
 }
