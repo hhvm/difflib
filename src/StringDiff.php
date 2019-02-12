@@ -45,7 +45,7 @@ final class StringDiff extends Diff {
     }
 
     while (!C\is_empty($remaining)) {
-      $not_keep = C\find_key($remaining, $row ==> !$row instanceof DiffKeepOp);
+      $not_keep = C\find_key($remaining, $row ==> !$row is DiffKeepOp<_>);
       if ($not_keep === null) {
         break;
       }
@@ -57,7 +57,7 @@ final class StringDiff extends Diff {
       $end = $count;
       $run_start = null;
       for ($i = $context; $i < $count; ++$i) {
-        if ($remaining[$i] instanceof DiffKeepOp) {
+        if ($remaining[$i] is DiffKeepOp<_>) {
           $run_start ??= $i;
           continue;
         }
@@ -97,7 +97,7 @@ final class StringDiff extends Diff {
     $lines = vec[];
 
     foreach ($hunk as $op) {
-      if ($op instanceof DiffKeepOp) {
+      if ($op is DiffKeepOp<_>) {
         $lines[] = ' '.$op->getContent();
         $old_start ??= $op->getOldPos();
         $new_start ??= $op->getNewPos();
@@ -106,7 +106,7 @@ final class StringDiff extends Diff {
         continue;
       }
 
-      if ($op instanceof DiffDeleteOp) {
+      if ($op is DiffDeleteOp<_>) {
         $lines[] = '-'.$op->getContent();
         $old_start ??= $op->getOldPos();
         $new_start ??= $op->getOldPos();
@@ -114,7 +114,7 @@ final class StringDiff extends Diff {
         continue;
       }
 
-      if ($op instanceof DiffInsertOp) {
+      if ($op is DiffInsertOp<_>) {
         $lines[] = '+'.$op->getContent();
         $old_start ??= $op->getNewPos();
         $new_start ??= $op->getNewPos();
