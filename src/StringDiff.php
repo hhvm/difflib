@@ -34,7 +34,7 @@ final class StringDiff extends Diff {
     return new self(Str\split($a, ''), Str\split($b, ''));
   }
 
-  public function getUnifiedDiff(int $context = 3): string {
+  public function getHunks(int $context): vec<vec<DiffOp<string>>> {
     $hunks = vec[];
 
     $remaining = $this->getDiff();
@@ -77,7 +77,11 @@ final class StringDiff extends Diff {
       $hunks[] = Vec\take($remaining, $end);
       $remaining = Vec\drop($remaining, $end);
     }
+    return $hunks;
+  }
 
+  public function getUnifiedDiff(int $context = 3): string {
+    $hunks = $this->getHunks($context);
     return Vec\map($hunks, $hunk ==> $this->getUnifiedDiffHunk($hunk))
       |> Vec\filter_nulls($$)
       |> Str\join($$, "");
