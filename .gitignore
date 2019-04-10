@@ -3,3 +3,4 @@ tests/examples/*.out
 *.swp
 *.swo
 .DS_Store
+composer.lock
