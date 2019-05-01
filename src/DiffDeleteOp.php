@@ -28,6 +28,11 @@ final class DiffDeleteOp<TContent> extends DiffOp<TContent> {
   }
 
   <<__Override>>
+  public function isDeleteOp(): bool {
+    return true;
+  }
+
+  <<__Override>>
   public function asDeleteOp(): DiffDeleteOp<TContent> {
     return $this;
   }

@@ -116,10 +116,10 @@ abstract class ColoredUnifiedDiff<TOut> {
           $words_next = vec(\preg_split('/([^a-zA-Z0-9_]+)/', $next, -1, \PREG_SPLIT_DELIM_CAPTURE));
           $intraline = (new StringDiff($words_line, $words_next))->getDiff();
           $out[] = $intraline
-            |> Vec\filter($$, $op ==> !$op is DiffInsertOp<_>)
+            |> Vec\filter($$, $op ==> !$op->isInsertOp())
             |> static::colorDeleteLineWithIntralineEdits($$);
           $out[] = $intraline
-            |> Vec\filter($$, $op ==> !$op is DiffDeleteOp<_>)
+            |> Vec\filter($$, $op ==> !$op->isDeleteOp())
             |> static::colorInsertLineWithIntralineEdits($$);
           continue;
         }

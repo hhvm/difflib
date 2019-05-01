@@ -33,6 +33,11 @@ final class DiffKeepOp<TContent> extends DiffOp<TContent> {
   }
 
   <<__Override>>
+  public function isKeepOp(): bool {
+    return true;
+  }
+
+  <<__Override>>
   public function asKeepOp(): DiffKeepOp<TContent> {
     return $this;
   }

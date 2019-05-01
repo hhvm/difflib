@@ -28,6 +28,11 @@ final class DiffInsertOp<TContent> extends DiffOp<TContent> {
   }
 
   <<__Override>>
+  public function isInsertOp(): bool {
+      return true;
+  }
+
+  <<__Override>>
   public function asInsertOp(): DiffInsertOp<TContent> {
     return $this;
   }

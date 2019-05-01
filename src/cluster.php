@@ -40,21 +40,22 @@ function cluster<T>(
     $cluster ==> {
       $first = C\firstx($cluster);
 
-      if ($first is DiffDeleteOp<_>) {
+      if ($first->isDeleteOp()) {
         return new DiffDeleteOp(
-          $first->getOldPos(),
+          $first->asDeleteOp()->getOldPos(),
           Vec\map($cluster, $op ==> $op->asDeleteOp()->getContent()),
         );
       }
 
-      if ($first is DiffInsertOp<_>) {
+      if ($first->isInsertOp()) {
         return new DiffInsertOp(
-          $first->getNewPos(),
+          $first->asInsertOp()->getNewPos(),
           Vec\map($cluster, $op ==> $op->asInsertOp()->getContent()),
         );
       }
 
-      if ($first is DiffKeepOp<_>) {
+      if ($first->isKeepOp()) {
+        $first = $first->asKeepOp();
         return new DiffKeepOp(
           $first->getOldPos(),
           $first->getNewPos(),

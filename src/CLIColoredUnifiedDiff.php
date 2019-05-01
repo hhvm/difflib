@@ -70,11 +70,11 @@ final abstract class CLIColoredUnifiedDiff extends ColoredUnifiedDiff<string> {
   ): string {
     $line = self::DELETE_COLOR.'-';
     foreach ($ops as $op) {
-      if ($op is DiffKeepOp<_>) {
+      if ($op->isKeepOp()) {
         $line .= $op->getContent();
         continue;
       }
-      if ($op is DiffDeleteOp<_>) {
+      if ($op->isDeleteOp()) {
         $line .= self::INTRALINE_DELETE_COLOR.
           $op->getContent().
           self::RESET.
@@ -91,11 +91,11 @@ final abstract class CLIColoredUnifiedDiff extends ColoredUnifiedDiff<string> {
   ): string {
     $line = self::INSERT_COLOR.'+';
     foreach ($ops as $op) {
-      if ($op is DiffKeepOp<_>) {
+      if ($op->isKeepOp()) {
         $line .= $op->getContent();
         continue;
       }
-      if ($op is DiffInsertOp<_>) {
+      if ($op->isInsertOp()) {
         $line .= self::INTRALINE_INSERT_COLOR.
           $op->getContent().
           self::RESET.
