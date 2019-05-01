@@ -18,6 +18,18 @@ namespace Facebook\DiffLib;
 abstract class DiffOp<TContent> {
   abstract public function getContent(): TContent;
 
+  public function isDeleteOp(): bool {
+    return false;
+  }
+
+  public function isInsertOp(): bool {
+    return false;
+  }
+
+  public function isKeepOp(): bool {
+    return false;
+  }
+
   public function asDeleteOp(): DiffDeleteOp<TContent> {
     invariant_violation('not a deletion');
   }

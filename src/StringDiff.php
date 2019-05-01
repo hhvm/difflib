@@ -40,12 +40,12 @@ final class StringDiff extends Diff {
     $remaining = $this->getDiff();
     $last = C\lastx($remaining);
     // diff -u ignores trailing newlines
-    if ($last is DiffKeepOp<_> && $last->getContent() === '') {
+    if ($last->isKeepOp() && $last->getContent() === '') {
       $remaining = Vec\slice($remaining, 0, C\count($remaining) - 1);
     }
 
     while (!C\is_empty($remaining)) {
-      $not_keep = C\find_key($remaining, $row ==> !$row is DiffKeepOp<_>);
+      $not_keep = C\find_key($remaining, $row ==> !$row->isKeepOp());
       if ($not_keep === null) {
         break;
       }
@@ -57,7 +57,7 @@ final class StringDiff extends Diff {
       $end = $count;
       $run_start = null;
       for ($i = $context; $i < $count; ++$i) {
-        if ($remaining[$i] is DiffKeepOp<_>) {
+        if ($remaining[$i]->isKeepOp()) {
           $run_start ??= $i;
           continue;
         }
@@ -101,7 +101,8 @@ final class StringDiff extends Diff {
     $lines = vec[];
 
     foreach ($hunk as $op) {
-      if ($op is DiffKeepOp<_>) {
+      if ($op->isKeepOp()) {
+        $op = $op->asKeepOp();
         $lines[] = ' '.$op->getContent();
         $old_start ??= $op->getOldPos();
         $new_start ??= $op->getNewPos();
@@ -110,7 +111,8 @@ final class StringDiff extends Diff {
         continue;
       }
 
-      if ($op is DiffDeleteOp<_>) {
+      if ($op->isDeleteOp()) {
+        $op = $op->asDeleteOp();
         $lines[] = '-'.$op->getContent();
         $old_start ??= $op->getOldPos();
         $new_start ??= $op->getOldPos();
@@ -118,7 +120,8 @@ final class StringDiff extends Diff {
         continue;
       }
 
-      if ($op is DiffInsertOp<_>) {
+      if ($op->isInsertOp()) {
+        $op = $op->asInsertOp();
         $lines[] = '+'.$op->getContent();
         $old_start ??= $op->getNewPos();
         $new_start ??= $op->getNewPos();
