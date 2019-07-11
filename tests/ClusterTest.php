@@ -18,12 +18,12 @@ final class ClusterTest extends \Facebook\HackTest\HackTest {
   public function testReplaceTrailing(): void {
     $diff = StringDiff::characters('abc', 'ade')->getDiff()
       |> cluster($$);
-    expect(C\count($diff))->toBeSame(3);
+    expect(C\count($diff))->toEqual(3);
     expect($diff[0])->toBeInstanceOf(DiffKeepOp::class);
     expect($diff[1])->toBeInstanceOf(DiffDeleteOp::class);
     expect($diff[2])->toBeInstanceOf(DiffInsertOp::class);
 
-    expect(Vec\map($diff, $op ==> $op->getContent()))->toBeSame(
+    expect(Vec\map($diff, $op ==> $op->getContent()))->toEqual(
       vec[vec['a'], vec['b', 'c'], vec['d', 'e']],
     );
   }

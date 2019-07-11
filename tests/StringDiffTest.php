@@ -21,7 +21,7 @@ use type Facebook\HackTest\DataProvider; // @oss-enable
 final class StringDiffTest extends \Facebook\HackTest\HackTest {
   public function testDiffLines(): void {
     $diff = StringDiff::lines("a\nb\nb\n", "a\nb\nc\n")->getDiff();
-    expect(C\count($diff))->toBeSame(5);
+    expect(C\count($diff))->toEqual(5);
 
     expect($diff[0])->toBeInstanceOf(DiffKeepOp::class);
     expect($diff[1])->toBeInstanceOf(DiffKeepOp::class);
@@ -29,21 +29,21 @@ final class StringDiffTest extends \Facebook\HackTest\HackTest {
     expect($diff[3])->toBeInstanceOf(DiffInsertOp::class);
     expect($diff[4])->toBeInstanceOf(DiffKeepOp::class);
 
-    expect(Vec\map($diff, $op ==> $op->getContent()))->toBeSame(
+    expect(Vec\map($diff, $op ==> $op->getContent()))->toEqual(
       vec['a', 'b', 'b', 'c', ''],
     );
   }
 
   public function testDiffCharacters(): void {
     $diff = StringDiff::characters('abb', 'abc')->getDiff();
-    expect(C\count($diff))->toBeSame(4);
+    expect(C\count($diff))->toEqual(4);
 
     expect($diff[0])->toBeInstanceOf(DiffKeepOp::class);
     expect($diff[1])->toBeInstanceOf(DiffKeepOp::class);
     expect($diff[2])->toBeInstanceOf(DiffDeleteOp::class);
     expect($diff[3])->toBeInstanceOf(DiffInsertOp::class);
 
-    expect(Vec\map($diff, $op ==> $op->getContent()))->toBeSame(
+    expect(Vec\map($diff, $op ==> $op->getContent()))->toEqual(
       vec['a', 'b', 'b', 'c'],
     );
   }
@@ -66,7 +66,7 @@ final class StringDiffTest extends \Facebook\HackTest\HackTest {
     $b = \file_get_contents($base.'.b');
     $diff = StringDiff::lines($a, $b)->getUnifiedDiff();
 
-    expect($diff)->toBeSame(
+    expect($diff)->toEqual(
       \file_get_contents($base.'.udiff.expect'),
       'Did not match expected contents '.
       '(from diff -u %s.a %s.b | tail -n +3 > %s.udiff.expect)',
@@ -97,7 +97,7 @@ final class StringDiffTest extends \Facebook\HackTest\HackTest {
       ));
     }
 
-    expect($diff)->toBeSame(
+    expect($diff)->toEqual(
       \file_get_contents($base.'.clidiff.expect'),
       'Did not match expected contents (- %s.clidiff.expect, + %s.clidiff.out)',
       $base,
