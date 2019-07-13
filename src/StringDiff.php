@@ -137,7 +137,7 @@ final class StringDiff extends Diff {
     invariant($old_start !== null, 'failed to find an old pos');
     invariant($new_start !== null, 'failed to find a new pos');
 
-    $format = ($start, $lines) ==> ($start === 1 && $lines === 1)
+    $format = (int $start, int $lines) ==> ($start === 1 && $lines === 1)
       ? '1'
       : Str\format('%d,%d', $start, $lines);
 
