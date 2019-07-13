@@ -7,7 +7,7 @@
       }
     },
     "require": {
-        "hhvm": "^4.7",
+        "hhvm": "^4.8",
         "hhvm/hsl": "^4.0"
     },
     "require-dev": {
