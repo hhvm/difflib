@@ -2,3 +2,6 @@ assume_php=false
 disable_primitive_refinement=true
 disallow_stringish_magic=true
 user_attributes=
+disallow_ambiguous_lambda=true
+disable_unsafe_expr=true
+disable_unsafe_block=true
