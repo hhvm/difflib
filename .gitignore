@@ -4,3 +4,4 @@ tests/examples/*.out
 *.swo
 .DS_Store
 composer.lock
+.*.hhast.*cache
