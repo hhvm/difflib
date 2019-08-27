@@ -21,7 +21,6 @@ function cluster<T>(
   vec<DiffOp<T>> $diff,
 ): vec<DiffOp<vec<T>>> {
   $clusters = vec[];
-  $limit = C\count($diff);
   while (!C\is_empty($diff)) {
     $class = $diff[0]->getDiffOpClass();
 
