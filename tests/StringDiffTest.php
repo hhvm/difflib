@@ -90,7 +90,7 @@ final class StringDiffTest extends \Facebook\HackTest\HackTest {
     /* HH_IGNORE_ERROR[4107] using directly because this is open source */
     /* HH_IGNORE_ERROR[2049] using directly because this is open source */
     if (!\file_exists($base.'.clidiff.expect')) {
-      self::markTestIncomplete(Str\format(
+      self::markTestSkipped(Str\format(
         "No expect file present; maybe:\n  cp %s.clidiff.out %s.clidiff.expect",
         $base,
         $base,
