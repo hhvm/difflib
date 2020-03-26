@@ -102,6 +102,10 @@ abstract class ColoredUnifiedDiff<TOut> {
           $next !== null
           && $next !== ''
           && $next[0] === '+'
+          // Levenshtein function throws for strings with length > 255
+          // Don't need intra word diffs for long lines
+          && Str\length($line) < 256
+          && Str\length($next) < 256
           // -2 to deal with the prefix
           /* HH_IGNORE_ERROR[4107] using directly because this is open source */
           /* HH_IGNORE_ERROR[2049] using directly because this is open source */
