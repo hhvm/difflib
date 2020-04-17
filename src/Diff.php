@@ -73,7 +73,7 @@ abstract class Diff {
 
     $prev = tuple(0, 0);
     foreach ($moves as list($from, $to)) {
-      invariant($from === $prev, "Missed a step");
+      invariant($from === $prev, 'Missed a step');
       list($x, $y) = $from;
       $prev = $to;
       if ($to === tuple($x + 1, $y + 1)) {

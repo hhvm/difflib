@@ -48,14 +48,14 @@ final class StringDiffTest extends \Facebook\HackTest\HackTest {
     );
   }
 
-  public function provideExamples(): vec<varray<string>> {
+  public function provideExamples(): vec<(string)> {
     return Vec\map(
       /* HH_IGNORE_ERROR[4107] using directly because this is open source */
       /* HH_IGNORE_ERROR[2049] using directly because this is open source */
       \glob(__DIR__.'/examples/*.a'),
       /* HH_IGNORE_ERROR[4107] using directly because this is open source */
       /* HH_IGNORE_ERROR[2049] using directly because this is open source */
-      $ex ==> varray[\basename($ex, '.a')],
+      $ex ==> tuple(\basename($ex, '.a')),
     );
   }
 

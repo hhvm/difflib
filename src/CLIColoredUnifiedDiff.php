@@ -60,12 +60,12 @@ final abstract class CLIColoredUnifiedDiff extends ColoredUnifiedDiff<string> {
   }
 
   <<__Override>>
-  final protected static function join(vec<string> $lines): string {
+  protected static function join(vec<string> $lines): string {
     return Str\join($lines, "\n")."\n";
   }
 
   <<__Override>>
-  final protected static function colorDeleteLineWithIntralineEdits(
+  protected static function colorDeleteLineWithIntralineEdits(
     vec<DiffOp<string>> $ops,
   ): string {
     $line = self::DELETE_COLOR.'-';
@@ -86,7 +86,7 @@ final abstract class CLIColoredUnifiedDiff extends ColoredUnifiedDiff<string> {
   }
 
   <<__Override>>
-  final protected static function colorInsertLineWithIntralineEdits(
+  protected static function colorInsertLineWithIntralineEdits(
     vec<DiffOp<string>> $ops,
   ): string {
     $line = self::INSERT_COLOR.'+';
