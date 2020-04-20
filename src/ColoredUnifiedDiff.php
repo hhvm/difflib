@@ -81,7 +81,7 @@ abstract class ColoredUnifiedDiff<TOut> {
       $lines = Vec\drop($lines, 1);
 
       if ($line === '') {
-        invariant(C\is_empty($lines), "Blank line was not last line");
+        invariant(C\is_empty($lines), 'Blank line was not last line');
         break;
       }
       if ($line[0] === '@') {

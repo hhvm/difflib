@@ -84,7 +84,7 @@ final class StringDiff extends Diff {
     $hunks = $this->getHunks($context);
     return Vec\map($hunks, $hunk ==> $this->getUnifiedDiffHunk($hunk))
       |> Vec\filter_nulls($$)
-      |> Str\join($$, "");
+      |> Str\join($$, '');
   }
 
   private function getUnifiedDiffHunk(
