@@ -107,8 +107,8 @@ abstract class ColoredUnifiedDiff<TOut> {
           && Str\length($line) < 256
           && Str\length($next) < 256
           // -2 to deal with the prefix
-          /* HH_IGNORE_ERROR[4107] using directly because this is open source */
-          /* HH_IGNORE_ERROR[2049] using directly because this is open source */
+          /* HH_FIXME[4107] using directly because this is open source */
+          /* HH_FIXME[2049] using directly because this is open source */
           && \levenshtein($line, $next) - 2 <= (0.5 * (Str\length($line) - 2))
         ) {
           // Drop the prefix

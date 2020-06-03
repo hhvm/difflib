@@ -50,11 +50,11 @@ final class StringDiffTest extends \Facebook\HackTest\HackTest {
 
   public function provideExamples(): vec<(string)> {
     return Vec\map(
-      /* HH_IGNORE_ERROR[4107] using directly because this is open source */
-      /* HH_IGNORE_ERROR[2049] using directly because this is open source */
+      /* HH_FIXME[4107] using directly because this is open source */
+      /* HH_FIXME[2049] using directly because this is open source */
       \glob(__DIR__.'/examples/*.a'),
-      /* HH_IGNORE_ERROR[4107] using directly because this is open source */
-      /* HH_IGNORE_ERROR[2049] using directly because this is open source */
+      /* HH_FIXME[4107] using directly because this is open source */
+      /* HH_FIXME[2049] using directly because this is open source */
       $ex ==> tuple(\basename($ex, '.a')),
     );
   }
@@ -83,12 +83,12 @@ final class StringDiffTest extends \Facebook\HackTest\HackTest {
     $b = \file_get_contents($base.'.b');
     $diff = CLIColoredUnifiedDiff::create($a, $b);
 
-    /* HH_IGNORE_ERROR[4107] using directly because this is open source */
-    /* HH_IGNORE_ERROR[2049] using directly because this is open source */
+    /* HH_FIXME[4107] using directly because this is open source */
+    /* HH_FIXME[2049] using directly because this is open source */
     \file_put_contents($base.'.clidiff.out', $diff);
 
-    /* HH_IGNORE_ERROR[4107] using directly because this is open source */
-    /* HH_IGNORE_ERROR[2049] using directly because this is open source */
+    /* HH_FIXME[4107] using directly because this is open source */
+    /* HH_FIXME[2049] using directly because this is open source */
     if (!\file_exists($base.'.clidiff.expect')) {
       self::markTestSkipped(Str\format(
         "No expect file present; maybe:\n  cp %s.clidiff.out %s.clidiff.expect",
