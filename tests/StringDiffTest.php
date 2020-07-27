@@ -48,7 +48,7 @@ final class StringDiffTest extends \Facebook\HackTest\HackTest {
     );
   }
 
-  public function provideExamples(): vec<(string)> {
+  public static function provideExamples(): vec<(string)> {
     return Vec\map(
       /* HH_FIXME[4107] using directly because this is open source */
       /* HH_FIXME[2049] using directly because this is open source */
