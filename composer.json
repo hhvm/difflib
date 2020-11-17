@@ -3,7 +3,8 @@
     "license": "MIT",
     "extra": {
       "branch-alias": {
-        "dev-master": "1.x-dev"
+        "dev-master": "1.x-dev",
+        "dev-CI_current_pull_request": "1.x-dev"
       }
     },
     "require": {
