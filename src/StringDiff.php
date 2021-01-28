@@ -16,7 +16,7 @@ use namespace HH\Lib\{C, Str, Vec};
 /** Concrete instance of `Diff` for comparing sequences of strings.
  *
  * You can directly pass in vectors of strings to the constructor, or you can
- * use `::lines()` or `::characters()` for convenience in the common cases.
+ * use `::lines()`, `::characters()` or `::commaSeparatedValues()` for convenience in the common cases.
  *
  * @see `getDiff()` to get a `vec<DiffOp<string>>`
  * @see `getUnifiedDiff()` to get a diff suitable for `patch`
@@ -32,6 +32,10 @@ final class StringDiff extends Diff {
 
   public static function characters(string $a, string $b): this {
     return new self(Str\split($a, ''), Str\split($b, ''));
+  }
+
+  public static function commaSeparatedValues(string $a, string $b): this {
+    return new self(Str\split($a, ','), Str\split($b, ','));
   }
 
   public function getHunks(int $context): vec<vec<DiffOp<string>>> {

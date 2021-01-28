@@ -48,6 +48,20 @@ final class StringDiffTest extends \Facebook\HackTest\HackTest {
     );
   }
 
+  public function testDiffCommaSeparatedValues(): void {
+    $diff = StringDiff::commaSeparatedValues('a,b,c', 'a,b,d')->getDiff();
+    expect(C\count($diff))->toEqual(4);
+
+    expect($diff[0])->toBeInstanceOf(DiffKeepOp::class);
+    expect($diff[1])->toBeInstanceOf(DiffKeepOp::class);
+    expect($diff[2])->toBeInstanceOf(DiffDeleteOp::class);
+    expect($diff[3])->toBeInstanceOf(DiffInsertOp::class);
+
+    expect(Vec\map($diff, $op ==> $op->getContent()))->toEqual(
+      vec['a', 'b', 'c', 'd'],
+    );
+  }
+
   public static function provideExamples(): vec<(string)> {
     return Vec\map(
       /* HH_FIXME[4107] using directly because this is open source */
