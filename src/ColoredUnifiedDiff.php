@@ -64,7 +64,6 @@ abstract class ColoredUnifiedDiff<TOut> {
     );
   }
 
-
   abstract protected static function join(vec<TOut> $lines): TOut;
 
   final public static function create(

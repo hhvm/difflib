@@ -8,7 +8,6 @@
  *
  */
 
-
 namespace Facebook\DiffLib;
 
 use namespace HH\Lib\{C, Str, Vec};
