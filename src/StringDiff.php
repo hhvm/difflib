@@ -10,7 +10,7 @@
 
 namespace Facebook\DiffLib;
 
-use namespace HH\Lib\{C, Str, Vec};
+use namespace HH\Lib\{C, Str, Vec}; // @oss-enable
 
 /** Concrete instance of `Diff` for comparing sequences of strings.
  *

@@ -10,7 +10,7 @@
 
 namespace Facebook\DiffLib;
 
-use namespace HH\Lib\{C, Dict, Vec};
+use namespace HH\Lib\{C, Dict, Vec}; // @oss-enable
 
 /** An implementation of Myer's diff algorithm.
  *

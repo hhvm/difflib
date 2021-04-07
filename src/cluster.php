@@ -10,7 +10,7 @@
 
 namespace Facebook\DiffLib;
 
-use namespace HH\Lib\{C, Vec};
+use namespace HH\Lib\{C, Vec}; // @oss-enable
 
 /** Group sequential operations of the same kind into one.
  *

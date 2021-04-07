@@ -10,7 +10,7 @@
 
 namespace Facebook\DiffLib;
 
-use namespace HH\Lib\Str;
+use namespace HH\Lib\Str; // @oss-enable
 
 /** Create a colored diff between two strings, using standard terminal
  * escape sequences.

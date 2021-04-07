@@ -10,7 +10,7 @@
 
 namespace Facebook\DiffLib;
 
-use namespace HH\Lib\{C, Str, Vec};
+use namespace HH\Lib\{C, Str, Vec}; // @oss-enable
 // @oss-disable: use function \expect;
 use function Facebook\FBExpect\expect; // @oss-enable
 
