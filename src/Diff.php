@@ -135,7 +135,7 @@ abstract class Diff {
    *
    * The final step is handled by `backtrackPath()`
    */
-  final private function getMoves(): vec<this::TMove> {
+  private function getMoves(): vec<this::TMove> {
     /* If you're comparing this to the paper:
      * `$max_x` is N
      * `$max_y` is M
