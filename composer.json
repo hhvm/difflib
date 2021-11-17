@@ -14,7 +14,7 @@
     "require-dev": {
         "hhvm/hhast": "^4.135.0",
         "hhvm/hacktest": "^2.3.0",
-        "facebook/fbexpect": "^2.1.2",
+        "facebook/fbexpect": "^2.8.1",
         "hhvm/hhvm-autoload": "^2.0|^3.0"
     }
 }
