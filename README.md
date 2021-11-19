@@ -1,5 +1,7 @@
 # DiffLib
 
+[![Continuous Integration](https://github.com/hhvm/difflib/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/hhvm/difflib/actions/workflows/build-and-test.yml)
+
 DiffLib is a Hack library for creating and parsing diffs. Diffs can be created
 between any two sequences of items. Additional helpers (such as support for
 unified diffs, and colored diffs) are provided for string diffs.

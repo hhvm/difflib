@@ -5,3 +5,4 @@ tests/examples/*.out
 .DS_Store
 composer.lock
 .*.hhast.*cache
+.var/
