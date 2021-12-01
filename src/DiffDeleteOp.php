@@ -12,10 +12,7 @@ namespace Facebook\DiffLib;
 
 /** An operation representing deleting an element from the original sequence */
 final class DiffDeleteOp<TContent> extends DiffOp<TContent> {
-  public function __construct(
-    private int $oldPos,
-    private TContent $content,
-  ) {
+  public function __construct(private int $oldPos, private TContent $content) {
   }
 
   public function getOldPos(): int {

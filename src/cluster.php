@@ -17,9 +17,7 @@ use namespace HH\Lib\{C, Vec}; // @oss-enable
  * For example, `[insert(a), insert(b), keep(c), insert(d), insert(e)]` will
  * be transformed to `[insert([a, b]), keep([c]), insert([d, e])`.
  */
-function cluster<T>(
-  vec<DiffOp<T>> $diff,
-): vec<DiffOp<vec<T>>> {
+function cluster<T>(vec<DiffOp<T>> $diff): vec<DiffOp<vec<T>>> {
   $clusters = vec[];
   while (!C\is_empty($diff)) {
     $class = $diff[0]->getDiffOpClass();
@@ -63,6 +61,6 @@ function cluster<T>(
       }
 
       invariant_violation('invalid op kind: %s', \get_class($first));
-    }
+    },
   );
 }

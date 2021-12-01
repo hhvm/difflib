@@ -12,10 +12,7 @@ namespace Facebook\DiffLib;
 
 /** An operation representing an insertion into the sequence */
 final class DiffInsertOp<TContent> extends DiffOp<TContent> {
-  public function __construct(
-    private int $newPos,
-    private TContent $content,
-  ) {
+  public function __construct(private int $newPos, private TContent $content) {
   }
 
   public function getNewPos(): int {
@@ -29,7 +26,7 @@ final class DiffInsertOp<TContent> extends DiffOp<TContent> {
 
   <<__Override>>
   public function isInsertOp(): bool {
-      return true;
+    return true;
   }
 
   <<__Override>>

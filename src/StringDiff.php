@@ -90,9 +90,7 @@ final class StringDiff extends Diff {
       |> Str\join($$, '');
   }
 
-  private function getUnifiedDiffHunk(
-    vec<DiffOp<string>> $hunk,
-  ): ?string {
+  private function getUnifiedDiffHunk(vec<DiffOp<string>> $hunk): ?string {
     if (C\is_empty($hunk)) {
       return null;
     }
@@ -132,10 +130,7 @@ final class StringDiff extends Diff {
         continue;
       }
 
-      invariant_violation(
-        'Unsupported diff op: %s',
-        \get_class($op),
-      );
+      invariant_violation('Unsupported diff op: %s', \get_class($op));
     }
     invariant($old_start !== null, 'failed to find an old pos');
     invariant($new_start !== null, 'failed to find a new pos');
@@ -148,6 +143,8 @@ final class StringDiff extends Diff {
       "@@ -%s +%s @@\n",
       $format($old_start + 1, $old_lines),
       $format($new_start + 1, $new_lines),
-    ).Str\join($lines, "\n")."\n";
+    ).
+      Str\join($lines, "\n").
+      "\n";
   }
 }

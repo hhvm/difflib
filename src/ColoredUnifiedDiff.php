@@ -98,13 +98,10 @@ abstract class ColoredUnifiedDiff<TOut> {
       if ($line[0] === '-') {
         $next = C\first($lines);
         if (
-          $next !== null
-          && $next !== ''
-          && $next[0] === '+'
+          $next !== null && $next !== '' && $next[0] === '+'
           // Levenshtein function throws for strings with length > 255
           // Don't need intra word diffs for long lines
-          && Str\length($line) < 256
-          && Str\length($next) < 256
+          && Str\length($line) < 256 && Str\length($next) < 256
           // -2 to deal with the prefix
           /* HH_FIXME[4107] using directly because this is open source */
           /* HH_FIXME[2049] using directly because this is open source */
@@ -115,8 +112,18 @@ abstract class ColoredUnifiedDiff<TOut> {
           $next = Str\slice($next, 1);
           $lines = Vec\drop($lines, 1);
 
-          $words_line = vec(\preg_split('/([^a-zA-Z0-9_]+)/', $line, -1, \PREG_SPLIT_DELIM_CAPTURE));
-          $words_next = vec(\preg_split('/([^a-zA-Z0-9_]+)/', $next, -1, \PREG_SPLIT_DELIM_CAPTURE));
+          $words_line = vec(\preg_split(
+            '/([^a-zA-Z0-9_]+)/',
+            $line,
+            -1,
+            \PREG_SPLIT_DELIM_CAPTURE,
+          ));
+          $words_next = vec(\preg_split(
+            '/([^a-zA-Z0-9_]+)/',
+            $next,
+            -1,
+            \PREG_SPLIT_DELIM_CAPTURE,
+          ));
           $intraline = (new StringDiff($words_line, $words_next))->getDiff();
           $out[] = $intraline
             |> Vec\filter($$, $op ==> !$op->isInsertOp())

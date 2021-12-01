@@ -76,27 +76,18 @@ abstract class Diff {
       list($x, $y) = $from;
       $prev = $to;
       if ($to === tuple($x + 1, $y + 1)) {
-        $diff[] = new DiffKeepOp(
-          $a[$x]['pos'],
-          $b[$y]['pos'],
-          $a[$x]['content'],
-        );
+        $diff[] =
+          new DiffKeepOp($a[$x]['pos'], $b[$y]['pos'], $a[$x]['content']);
         continue;
       }
 
       if ($to === tuple($x + 1, $y)) {
-        $diff[] = new DiffDeleteOp(
-          $a[$x]['pos'],
-          $a[$x]['content'],
-        );
+        $diff[] = new DiffDeleteOp($a[$x]['pos'], $a[$x]['content']);
         continue;
       }
 
       if ($to === tuple($x, $y + 1)) {
-        $diff[] = new DiffInsertOp(
-          $b[$y]['pos'],
-          $b[$y]['content'],
-        );
+        $diff[] = new DiffInsertOp($b[$y]['pos'], $b[$y]['content']);
         continue;
       }
 
@@ -206,8 +197,8 @@ abstract class Diff {
         // Decide which option we're taking for this diagonal
         if (
           // if ===, can't be -1 as $diagonal >= -$cost
-          $diagonal === -$cost
-          || (
+          $diagonal === -$cost ||
+          (
             // if ===, must be -1 as $diagonal <= $cost
             $diagonal !== $cost
             // Okay, we can choose.
@@ -218,7 +209,8 @@ abstract class Diff {
             // is generally expected, and considered more readable than:
             //     +foof
             //     -foo
-            && $best_points[$diagonal - 1] < $best_points[$diagonal + 1]
+            &&
+            $best_points[$diagonal - 1] < $best_points[$diagonal + 1]
           )
         ) {
           // keep x, increase $y (add a insertion)
@@ -278,10 +270,10 @@ abstract class Diff {
        * diagonal moves. Which?
        */
       if (
-        $diagonal === -$cost
-        || (
-          $diagonal !== $cost
-          && $best_points[$diagonal - 1] < $best_points[$diagonal + 1]
+        $diagonal === -$cost ||
+        (
+          $diagonal !== $cost &&
+          $best_points[$diagonal - 1] < $best_points[$diagonal + 1]
         )
       ) {
         $diagonal = $diagonal + 1;
