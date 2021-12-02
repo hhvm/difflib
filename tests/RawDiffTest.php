@@ -72,9 +72,7 @@ final class RawDiffTest extends \Facebook\HackTest\HackTest {
   }
 
   public function testTruncate(): void {
-    $diff = (
-      new StringDiff(vec['a', 'b', 'c'], vec['a', 'b'])
-    )->getDiff();
+    $diff = (new StringDiff(vec['a', 'b', 'c'], vec['a', 'b']))->getDiff();
 
     expect(C\count($diff))->toEqual(3);
 
