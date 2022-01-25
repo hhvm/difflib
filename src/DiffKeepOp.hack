@@ -1,4 +1,3 @@
-<?hh
 /*
  *  Copyright (c) 2017-present, Facebook, Inc.
  *  All rights reserved.
@@ -10,13 +9,21 @@
 
 namespace Facebook\DiffLib;
 
-/** An operation representing deleting an element from the original sequence */
-final class DiffDeleteOp<TContent> extends DiffOp<TContent> {
-  public function __construct(private int $oldPos, private TContent $content) {
+/** An operation indicating that this element in the sequence is unchanged */
+final class DiffKeepOp<TContent> extends DiffOp<TContent> {
+  public function __construct(
+    private int $oldPos,
+    private int $newPos,
+    private TContent $content,
+  ) {
   }
 
   public function getOldPos(): int {
     return $this->oldPos;
+  }
+
+  public function getNewPos(): int {
+    return $this->newPos;
   }
 
   <<__Override>>
@@ -25,12 +32,12 @@ final class DiffDeleteOp<TContent> extends DiffOp<TContent> {
   }
 
   <<__Override>>
-  public function isDeleteOp(): bool {
+  public function isKeepOp(): bool {
     return true;
   }
 
   <<__Override>>
-  public function asDeleteOp(): DiffDeleteOp<TContent> {
+  public function asKeepOp(): DiffKeepOp<TContent> {
     return $this;
   }
 }
