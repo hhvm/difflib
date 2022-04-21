@@ -16,5 +16,10 @@
         "hhvm/hacktest": "^2.0",
         "facebook/fbexpect": "^2.1.2",
         "hhvm/hhvm-autoload": "^2.0|^3.0"
+    },
+    "config": {
+      "allow-plugins": {
+        "hhvm/hhvm-autoload": true
+      }
     }
 }
